@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>CapyCode – A Capivara Hacker do Bem</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="bg-global"></div>
+    <div class="bg-dots"></div>
+
+    <!-- ════════════════════════════════════════
+     SCREEN 1 – INTRO
+════════════════════════════════════════ -->
+    <div class="screen active" id="s-intro">
+      <!-- TOP ROW -->
+      <div class="intro-top">
+        <!-- LOGO + MASCOT -->
+        <div class="panel logo-panel">
+          <div class="logo-area">
+            <div class="logo-icon-box">&lt;/&gt;</div>
+            <div>
+              <div class="logo-title">CapyCode</div>
+              <div class="logo-sub">A Capivara Hacker do Bem</div>
+            </div>
+          </div>
+          <div class="mascot-hero">
+            <canvas
+              class="mascot-canvas"
+              id="mascotCanvas"
+              width="320"
+              height="160"
+            ></canvas>
+            <div class="speech-hero">
+              Olá! Eu sou <strong>CapyCode</strong> e vou precisar da sua ajuda
+              para proteger o código e salvar a autoria! Vamos nessa?
+            </div>
+          </div>
+          <div class="intro-nav">
+            <button class="btn btn-green btn-wide btn-lg" id="btn-jogar">
+              ▶ JOGAR
+            </button>
+          </div>
+          <div style="display: flex; gap: 8px">
+            <button class="btn btn-blue btn-sm" style="flex: 1" id="btn-como">
+              Como Jogar
+            </button>
+            <button
+              class="btn btn-sm"
+              style="
+                flex: 1;
+                background: rgba(255, 255, 255, 0.07);
+                color: var(--dim);
+              "
+              id="btn-cred"
+            >
+              Créditos
+            </button>
+          </div>
+        </div>
+
+        <!-- CHAR + NAME -->
+        <div class="panel char-panel">
+          <div>
+            <span class="lbl">Digite seu nome</span>
+            <input
+              class="inp"
+              id="inp-name"
+              type="text"
+              placeholder="Seu nome de herói…"
+              maxlength="18"
+            />
+          </div>
+          <div>
+            <span class="lbl">Escolha seu personagem</span>
+            <div class="char-grid" id="char-grid"></div>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: center">
+            <input
+              class="inp"
+              id="inp-name2"
+              type="text"
+              placeholder="Seu nome…"
+              maxlength="18"
+              style="flex: 1"
+            />
+            <button class="btn btn-green" id="btn-comecar">
+              Começar Aventura
+            </button>
+          </div>
+        </div>
+
+        <!-- HOW TO PLAY -->
+        <div class="panel howto-panel">
+          <div class="howto-title">Como Jogar</div>
+          <div class="howto-item">
+            <span class="howto-icon">💡</span>Responda as perguntas corretamente
+            para avançar nas fases.
+          </div>
+          <div class="howto-item">
+            <span class="howto-icon">🚩</span>Cada fase tem 5 perguntas e um
+            desafio especial!
+          </div>
+          <div class="howto-item">
+            <span class="howto-icon">⭐</span>Ganhe acessórios em cada fase
+            concluída!
+          </div>
+          <div class="howto-item">
+            <span class="howto-icon">⏱️</span>Seja rápido! O tempo também conta
+            pontos!
+          </div>
+          <div class="howto-item">
+            <span class="howto-icon">❤️</span>3 vidas — errar 2x reinicia as
+            perguntas da fase.
+          </div>
+          <hr style="border-color: var(--bord); margin: 10px 0" />
+          <div style="font-size: 0.72rem; color: rgba(46, 204, 113, 0.8)">
+            🔐 Proteja o software, respeite a autoria e seja o hacker do bem!
+          </div>
+        </div>
+
+        <!-- RANKING -->
+        <div class="panel rank-panel">
+          <div class="rank-title">🏆 Ranking</div>
+          <div id="rank-list-intro">
+            <div
+              style="
+                color: var(--dim);
+                text-align: center;
+                padding: 14px;
+                font-size: 0.85rem;
+              "
+            >
+              Seja o primeiro!
+            </div>
+          </div>
+          <button
+            class="btn btn-blue btn-sm btn-wide"
+            style="margin-top: 8px"
+            id="btn-ver-todos"
+          >
+            Ver Todos
+          </button>
+        </div>
+      </div>
+      <!-- /intro-top -->
+
+      <!-- BOTTOM ROW – Phase previews -->
+      <div class="intro-bottom">
+        <div class="panel phase-preview">
+          <div class="phase-preview-bg">
+            <canvas
+              id="prev-canvas-1"
+              style="width: 100%; height: 100%"
+            ></canvas>
+          </div>
+          <div class="phase-preview-content">
+            <div class="phase-tag">
+              ⏱ 04:58 &nbsp;|&nbsp;
+              <span style="color: var(--green)"
+                >FASE 1 – LABORATÓRIO TECNOLÓGICO</span
+              >
+            </div>
+            <canvas id="scene-prev-1" class="scene-canvas"></canvas>
+          </div>
+        </div>
+        <div class="panel phase-preview">
+          <div class="phase-preview-bg">
+            <canvas
+              id="prev-canvas-2"
+              style="width: 100%; height: 100%"
+            ></canvas>
+          </div>
+          <div class="phase-preview-content">
+            <div class="phase-tag">
+              ⏱ 05:00 &nbsp;|&nbsp;
+              <span style="color: var(--green)"
+                >FASE 2 – MISSÃO INVESTIGAÇÃO</span
+              >
+            </div>
+            <canvas id="scene-prev-2" class="scene-canvas"></canvas>
+          </div>
+        </div>
+        <div class="panel phase-preview">
+          <div class="phase-preview-bg">
+            <canvas
+              id="prev-canvas-3"
+              style="width: 100%; height: 100%"
+            ></canvas>
+          </div>
+          <div class="phase-preview-content">
+            <div class="phase-tag">
+              ⏱ 03:40 &nbsp;|&nbsp;
+              <span style="color: var(--gold)">FASE 3 – PREMIAÇÃO</span>
+            </div>
+            <canvas id="scene-prev-3" class="scene-canvas"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /s-intro -->
+
+    <!-- ════════════════════════════════════════
+     SCREEN 2 – GAME
+════════════════════════════════════════ -->
+    <div class="screen" id="s-game">
+      <div class="game-layout">
+        <!-- HUD -->
+        <div class="game-hud">
+          <div class="hud-phase-name" id="g-phase-name">
+            Fase 1 – Escola de Tecnologia
+          </div>
+          <div class="hud-pill">
+            ⭐ <span id="g-score" class="hud-score-val">0</span>
+          </div>
+          <div class="hud-pill">
+            ⏱ <span id="g-timer" class="hud-timer">--</span>
+          </div>
+          <div class="hud-pill" id="g-hearts"></div>
+          <div class="hud-q-progress" id="g-q-prog"></div>
+          <div class="hud-name-pill" id="g-name-pill">Jogador</div>
+        </div>
+
+        <!-- MAIN -->
+        <div class="game-main">
+          <!-- SCENE -->
+          <div class="panel scene-panel" id="scene-panel">
+            <canvas id="mainCanvas"></canvas>
+            <div class="scene-timer-badge">
+              ⏱ <span id="scene-timer">04:58</span>
+            </div>
+            <div class="scene-pts-badge">
+              PONTOS <span id="scene-pts">0</span>
+            </div>
+            <div class="scene-interact-hint">
+              <span class="key-badge">E</span> para falar / interagir
+              &nbsp;·&nbsp; <span class="key-badge">← →</span> mover
+              &nbsp;·&nbsp; <span class="key-badge">↑/Espaço</span> pular
+            </div>
+            <!-- Bubbles injected here -->
+          </div>
+
+          <!-- Q PANEL -->
+          <div class="panel q-panel" id="q-panel">
+            <!-- NPC says -->
+            <div class="q-npc-say" id="q-npc-say">
+              <div class="q-npc-avatar" id="q-npc-av">🦊</div>
+              <div class="q-npc-bubble">
+                <div class="q-npc-name" id="q-npc-nm">Prof. Byte</div>
+                <div id="q-npc-msg">Para começar, me diga...</div>
+              </div>
+            </div>
+
+            <div class="q-number-row">
+              <div class="q-num" id="q-num">Pergunta 1 de 5</div>
+              <div
+                class="q-timer-small"
+                id="q-timer-num"
+                style="color: var(--green)"
+              >
+                ⏱ 40s
+              </div>
+            </div>
+
+            <div class="q-text" id="q-text">O que é um software?</div>
+            <div class="q-hint-box">
+              <span>💡</span
+              ><span id="q-hint">Pense no que faz o computador funcionar.</span>
+            </div>
+            <div class="q-answers" id="q-answers"></div>
+            <div class="q-feedback" id="q-feedback">
+              <div class="fb-t" id="fb-title"></div>
+              <div id="fb-body"></div>
+            </div>
+            <div class="q-timer-bar">
+              <div class="q-timer-fill" id="q-tfill"></div>
+            </div>
+            <button
+              class="btn btn-green btn-wide"
+              id="q-next"
+              style="display: none; margin-top: 4px"
+            >
+              Próxima →
+            </button>
+          </div>
+        </div>
+        <!-- /game-main -->
+
+        <!-- ACCESSORIES BAR -->
+        <div class="panel acc-bar">
+          <span class="acc-title">Seus Acessórios</span>
+          <div class="acc-items" id="acc-items"></div>
+          <div
+            style="margin-left: auto; font-size: 0.75rem; color: var(--dim)"
+            id="phase-tag-bar"
+          >
+            Fase 1/3
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /s-game -->
+
+    <!-- ════════════════════════════════════════
+     OVERLAYS
+════════════════════════════════════════ -->
+
+    <!-- Phase Intro Modal -->
+    <div class="overlay" id="ov-phase">
+      <div class="panel phase-modal panel-blue">
+        <div class="badge badge-blue" id="ph-badge">Fase 1</div>
+        <div class="ph-icon" id="ph-icon">🏫</div>
+        <div class="ph-title" id="ph-title">Escola de Tecnologia</div>
+        <div class="ph-desc" id="ph-desc">
+          Explore o laboratório e fale com todos os personagens para desbloquear
+          as perguntas!
+        </div>
+        <div class="ph-npc-row" id="ph-npcs"></div>
+        <div class="ph-controls">
+          <strong>← →</strong> Mover &nbsp;|&nbsp;
+          <strong>↑ / Espaço</strong> Pular &nbsp;|&nbsp;
+          <strong>E</strong> Falar/Interagir<br />
+          Fale com o <strong>RobôGuia 🤖</strong> primeiro para iniciar a
+          exploração.
+        </div>
+        <button class="btn btn-green btn-wide btn-lg" id="ph-start">
+          ▶ Explorar!
+        </button>
+      </div>
+    </div>
+
+    <!-- Reward Modal -->
+    <div class="overlay" id="ov-reward">
+      <div class="panel rw-modal panel-gold">
+        <span id="rw-emoji-big">🎉</span>
+        <div class="rw-title" id="rw-title">Fase Concluída!</div>
+        <div class="rw-sub" id="rw-sub">Parabéns!</div>
+        <div class="rw-stats">
+          <div class="rw-stat">
+            <div class="rw-stat-v" id="rw-pts">0</div>
+            <div class="rw-stat-l">Pontos</div>
+          </div>
+          <div class="rw-stat">
+            <div class="rw-stat-v" id="rw-acc">5/5</div>
+            <div class="rw-stat-l">Acertos</div>
+          </div>
+          <div class="rw-stat">
+            <div class="rw-stat-v" id="rw-tm">0s</div>
+            <div class="rw-stat-l">Tempo</div>
+          </div>
+        </div>
+        <div id="rw-no-reward-msg" class="rw-no-reward" style="display: none">
+          ⚠️ Você errou 2 ou mais vezes — recompensa não liberada nesta fase.
+        </div>
+        <div class="rw-items-grid" id="rw-items"></div>
+        <button class="btn btn-green btn-wide btn-lg" id="rw-continue">
+          Continuar Aventura →
+        </button>
+      </div>
+    </div>
+
+    <!-- Victory Modal -->
+    <div class="overlay" id="ov-victory">
+      <div class="panel victory-modal panel-purple">
+        <span class="v-trophy">👑</span>
+        <div class="v-title">Missão Cumprida!</div>
+        <div
+          style="color: var(--dim); font-size: 0.9rem; margin-bottom: 6px"
+          id="v-player-name"
+        ></div>
+        <div class="v-sub">
+          Você protegeu o software, respeitou a autoria e se tornou um Guardião
+          do Código! 🛡️
+        </div>
+        <div class="v-stats">
+          <div class="rw-stat">
+            <div class="rw-stat-v" id="v-pts">0</div>
+            <div class="rw-stat-l">Total</div>
+          </div>
+          <div class="rw-stat">
+            <div class="rw-stat-v" id="v-time">0</div>
+            <div class="rw-stat-l">Tempo</div>
+          </div>
+          <div class="rw-stat">
+            <div class="rw-stat-v" id="v-rank">-</div>
+            <div class="rw-stat-l">Ranking</div>
+          </div>
+        </div>
+        <div class="v-rewards" id="v-rewards"></div>
+        <div class="v-note">
+          🎓 <strong>Lembre-se:</strong> Todo software tem um autor. Respeitar a
+          licença, não fazer cópias ilegais e usar softwares com autorização são
+          atitudes de um verdadeiro Guardião do Código!
+        </div>
+        <div class="v-btns">
+          <button class="btn btn-green" id="v-play-again">
+            🔄 Jogar Novamente
+          </button>
+          <button class="btn btn-gold" id="v-ranking">🏆 Ver Ranking</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fail Message -->
+    <div id="fail-overlay">
+      <div id="fail-box">
+        <h2>💔 Muitos Erros!</h2>
+        <p>
+          Você errou 2 ou mais vezes.<br />Voltando à 1ª pergunta da fase…<br /><em
+            style="color: var(--dim)"
+            >Recompensa bloqueada nesta tentativa.</em
+          >
+        </p>
+      </div>
+    </div>
+
+    <!-- How to Play overlay -->
+    <div class="overlay" id="ov-howto">
+      <div class="panel" style="max-width: 500px; width: 100%; padding: 28px">
+        <div
+          style="
+            font-family: var(--font);
+            font-size: 1.5rem;
+            color: var(--bl);
+            margin-bottom: 16px;
+            text-align: center;
+          "
+        >
+          ❓ Como Jogar
+        </div>
+        <div
+          style="
+            font-size: 0.88rem;
+            line-height: 1.9;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+          "
+        >
+          <div
+            style="
+              background: rgba(46, 204, 113, 0.08);
+              border-left: 3px solid var(--green);
+              border-radius: 0 8px 8px 0;
+              padding: 9px 12px;
+            "
+          >
+            <strong style="color: var(--green)">🎯 Objetivo:</strong> Explore
+            cada fase, fale com os NPCs e responda 5 perguntas sobre software e
+            propriedade intelectual.
+          </div>
+          <div
+            style="
+              background: rgba(66, 165, 245, 0.08);
+              border-left: 3px solid var(--bl);
+              border-radius: 0 8px 8px 0;
+              padding: 9px 12px;
+            "
+          >
+            <strong style="color: var(--bl)">🕹️ Controles:</strong> ← → mover ·
+            ↑/Espaço pular · E interagir com NPCs
+          </div>
+          <div
+            style="
+              background: rgba(255, 214, 0, 0.08);
+              border-left: 3px solid var(--yellow);
+              border-radius: 0 8px 8px 0;
+              padding: 9px 12px;
+            "
+          >
+            <strong style="color: var(--yellow)">⭐ Pontos:</strong> 100 pts por
+            acerto + bônus de tempo. Responda rápido!
+          </div>
+          <div
+            style="
+              background: rgba(229, 57, 53, 0.08);
+              border-left: 3px solid var(--red);
+              border-radius: 0 8px 8px 0;
+              padding: 9px 12px;
+            "
+          >
+            <strong style="color: #ff8a80">💔 Erros:</strong> Errar 2x reinicia
+            as perguntas da fase e bloqueia a recompensa nessa tentativa!
+          </div>
+          <div
+            style="
+              background: rgba(255, 77, 157, 0.08);
+              border-left: 3px solid var(--pink);
+              border-radius: 0 8px 8px 0;
+              padding: 9px 12px;
+            "
+          >
+            <strong style="color: var(--pink)">🎁 Recompensas:</strong> Erre no
+            máximo 1 vez para ganhar o acessório da fase.
+          </div>
+        </div>
+        <button
+          class="btn btn-green btn-wide"
+          style="margin-top: 16px"
+          id="ov-howto-close"
+        >
+          ← Fechar
+        </button>
+      </div>
+    </div>
+
+    <!-- Credits overlay -->
+    <div class="overlay" id="ov-credits">
+      <div
+        class="panel"
+        style="max-width: 420px; width: 100%; padding: 28px; text-align: center"
+      >
+        <div style="font-size: 3rem; margin-bottom: 6px">🦫</div>
+        <div
+          style="
+            font-family: var(--font);
+            font-size: 1.7rem;
+            margin-bottom: 4px;
+            color: var(--bl);
+          "
+        >
+          CapyCode
+        </div>
+        <div
+          style="
+            font-size: 0.72rem;
+            color: var(--dim);
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+          "
+        >
+          A CAPIVARA HACKER DO BEM
+        </div>
+        <div
+          style="
+            font-size: 0.85rem;
+            color: var(--dim);
+            line-height: 1.9;
+            text-align: left;
+          "
+        >
+          🎓 <strong style="color: var(--text)">Objetivo:</strong> Educação em
+          Propriedade Intelectual<br />
+          📚 <strong style="color: var(--text)">Público:</strong> Ensino Médio
+          Técnico<br />
+          ⚖️ <strong style="color: var(--text)">Lei:</strong> 9.610/98 –
+          Direitos Autorais<br />
+          💻 <strong style="color: var(--text)">Tecnologia:</strong> HTML5
+          Canvas + CSS3 + JS puro
+          <hr style="border-color: var(--bord); margin: 12px 0" />
+          <em style="font-size: 0.75rem; color: rgba(150, 200, 255, 0.5)"
+            >Todo o visual é gerado via Canvas 2D. Jogo educacional sem
+            dependências externas.</em
+          >
+        </div>
+        <button
+          class="btn btn-blue btn-wide"
+          style="margin-top: 16px"
+          id="ov-credits-close"
+        >
+          ← Fechar
+        </button>
+      </div>
+    </div>
+
+    <!-- Ranking overlay -->
+    <div class="overlay" id="ov-ranking">
+      <div class="panel" style="max-width: 500px; width: 100%; padding: 28px">
+        <div
+          style="
+            font-family: var(--font);
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 16px;
+            text-align: center;
+          "
+        >
+          🏆 Ranking Completo
+        </div>
+        <div
+          id="rank-list-full"
+          style="
+            max-height: 400px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+          "
+        ></div>
+        <button
+          class="btn btn-blue btn-wide"
+          style="margin-top: 14px"
+          id="ov-rank-close"
+        >
+          ← Fechar
+        </button>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
