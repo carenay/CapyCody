@@ -1,25 +1,34 @@
+
+
 <!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="theme-color" content="#0d1b3e" />
+    <meta name="format-detection" content="telephone=no" />
     <title>CapyCode – A Capivara Hacker do Bem</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style"
+      href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@600;800&display=swap"
+      onload="this.rel='stylesheet'" />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@600;800&display=swap" />
+    </noscript>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="bg-global"></div>
     <div class="bg-dots"></div>
 
-    <!-- ════════════════════════════════════════
-     SCREEN 1 – INTRO
-════════════════════════════════════════ -->
+    <!-- SCREEN 1 – INTRO -->
     <div class="screen active" id="s-intro">
-      <!-- TOP ROW -->
       <div class="intro-top">
+
         <!-- LOGO + MASCOT -->
         <div class="panel logo-panel">
           <div class="logo-area">
@@ -29,225 +38,123 @@
               <div class="logo-sub">A Capivara Hacker do Bem</div>
             </div>
           </div>
+          <!-- MASCOT: imagem real substituindo canvas -->
           <div class="mascot-hero">
-            <canvas
-              class="mascot-canvas"
-              id="mascotCanvas"
-              width="320"
-              height="160"
-            ></canvas>
+            <img id="mascot-img" class="mascot-img" src="data:image/jpeg;base64,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" alt="CapyCode mascote" />
             <div class="speech-hero">
-              Olá! Eu sou <strong>CapyCode</strong> e vou precisar da sua ajuda
-              para proteger o código e salvar a autoria! Vamos nessa?
+              Olá! Eu sou <strong>CapyCode</strong>!<br>Vamos proteger o código juntos?
             </div>
-          </div>
-          <div class="intro-nav">
-            <button class="btn btn-green btn-wide btn-lg" id="btn-jogar">
-              ▶ JOGAR
-            </button>
-          </div>
-          <div style="display: flex; gap: 8px">
-            <button class="btn btn-blue btn-sm" style="flex: 1" id="btn-como">
-              Como Jogar
-            </button>
-            <button
-              class="btn btn-sm"
-              style="
-                flex: 1;
-                background: rgba(255, 255, 255, 0.07);
-                color: var(--dim);
-              "
-              id="btn-cred"
-            >
-              Créditos
-            </button>
           </div>
         </div>
 
         <!-- CHAR + NAME -->
         <div class="panel char-panel">
           <div>
-            <span class="lbl">Digite seu nome</span>
-            <input
-              class="inp"
-              id="inp-name"
-              type="text"
-              placeholder="Seu nome de herói…"
-              maxlength="18"
-            />
+            <span class="lbl">Nome do seu guerreiro</span>
+            <input class="inp" id="inp-name" type="text"
+              placeholder="Digite seu nome…" maxlength="18"
+              autocomplete="off" autocapitalize="words"
+              spellcheck="false" enterkeyhint="go" />
           </div>
           <div>
             <span class="lbl">Escolha seu personagem</span>
             <div class="char-grid" id="char-grid"></div>
           </div>
-          <div style="display: flex; gap: 8px; align-items: center">
-            <input
-              class="inp"
-              id="inp-name2"
-              type="text"
-              placeholder="Seu nome…"
-              maxlength="18"
-              style="flex: 1"
-            />
-            <button class="btn btn-green" id="btn-comecar">
-              Começar Aventura
-            </button>
+          <!-- ÚNICO BOTÃO CENTRAL para iniciar -->
+          <button class="btn btn-green btn-wide btn-lg btn-start-central" id="btn-comecar">
+            ▶ Começar Aventura
+          </button>
+          <div style="display:flex;gap:8px;margin-top:4px">
+            <button class="btn btn-blue btn-sm" style="flex:1" id="btn-como">Como Jogar</button>
+            <button class="btn btn-sm" style="flex:1;background:rgba(255,255,255,.07);color:var(--dim)" id="btn-cred">Créditos</button>
           </div>
         </div>
 
         <!-- HOW TO PLAY -->
         <div class="panel howto-panel">
           <div class="howto-title">Como Jogar</div>
-          <div class="howto-item">
-            <span class="howto-icon">💡</span>Responda as perguntas corretamente
-            para avançar nas fases.
-          </div>
-          <div class="howto-item">
-            <span class="howto-icon">🚩</span>Cada fase tem 5 perguntas e um
-            desafio especial!
-          </div>
-          <div class="howto-item">
-            <span class="howto-icon">⭐</span>Ganhe acessórios em cada fase
-            concluída!
-          </div>
-          <div class="howto-item">
-            <span class="howto-icon">⏱️</span>Seja rápido! O tempo também conta
-            pontos!
-          </div>
-          <div class="howto-item">
-            <span class="howto-icon">❤️</span>3 vidas — errar 2x reinicia as
-            perguntas da fase.
-          </div>
-          <hr style="border-color: var(--bord); margin: 10px 0" />
-          <div style="font-size: 0.72rem; color: rgba(46, 204, 113, 0.8)">
-            🔐 Proteja o software, respeite a autoria e seja o hacker do bem!
-          </div>
+          <div class="howto-item"><span class="howto-icon">💡</span>Responda as perguntas para avançar nas fases.</div>
+          <div class="howto-item"><span class="howto-icon">🚩</span>Cada fase tem 5 perguntas e um desafio!</div>
+          <div class="howto-item"><span class="howto-icon">⭐</span>Ganhe acessórios em cada fase concluída!</div>
+          <div class="howto-item"><span class="howto-icon">⏱️</span>Seja rápido! O tempo conta pontos!</div>
+          <div class="howto-item"><span class="howto-icon">❤️</span>3 vidas — errar 2x reinicia as perguntas.</div>
+          <hr style="border-color:var(--bord);margin:10px 0" />
+          <div style="font-size:.72rem;color:rgba(46,204,113,.8)">🔐 Proteja o software, respeite a autoria!</div>
         </div>
 
         <!-- RANKING -->
         <div class="panel rank-panel">
           <div class="rank-title">🏆 Ranking</div>
           <div id="rank-list-intro">
-            <div
-              style="
-                color: var(--dim);
-                text-align: center;
-                padding: 14px;
-                font-size: 0.85rem;
-              "
-            >
-              Seja o primeiro!
-            </div>
+            <div style="color:var(--dim);text-align:center;padding:14px;font-size:.85rem">Seja o primeiro!</div>
           </div>
-          <button
-            class="btn btn-blue btn-sm btn-wide"
-            style="margin-top: 8px"
-            id="btn-ver-todos"
-          >
-            Ver Todos
-          </button>
+          <button class="btn btn-blue btn-sm btn-wide" style="margin-top:8px" id="btn-ver-todos">Ver Todos</button>
         </div>
       </div>
-      <!-- /intro-top -->
 
       <!-- BOTTOM ROW – Phase previews -->
       <div class="intro-bottom">
         <div class="panel phase-preview">
-          <div class="phase-preview-bg">
-            <canvas
-              id="prev-canvas-1"
-              style="width: 100%; height: 100%"
-            ></canvas>
-          </div>
+          <div class="phase-preview-bg"><canvas id="prev-canvas-1" style="width:100%;height:100%"></canvas></div>
           <div class="phase-preview-content">
-            <div class="phase-tag">
-              ⏱ 04:58 &nbsp;|&nbsp;
-              <span style="color: var(--green)"
-                >FASE 1 – LABORATÓRIO TECNOLÓGICO</span
-              >
-            </div>
+            <div class="phase-tag">⏱ 04:58 &nbsp;|&nbsp;<span style="color:var(--green)">FASE 1 – LABORATÓRIO</span></div>
             <canvas id="scene-prev-1" class="scene-canvas"></canvas>
           </div>
         </div>
         <div class="panel phase-preview">
-          <div class="phase-preview-bg">
-            <canvas
-              id="prev-canvas-2"
-              style="width: 100%; height: 100%"
-            ></canvas>
-          </div>
+          <div class="phase-preview-bg"><canvas id="prev-canvas-2" style="width:100%;height:100%"></canvas></div>
           <div class="phase-preview-content">
-            <div class="phase-tag">
-              ⏱ 05:00 &nbsp;|&nbsp;
-              <span style="color: var(--green)"
-                >FASE 2 – MISSÃO INVESTIGAÇÃO</span
-              >
-            </div>
+            <div class="phase-tag">⏱ 05:00 &nbsp;|&nbsp;<span style="color:var(--green)">FASE 2 – INVESTIGAÇÃO</span></div>
             <canvas id="scene-prev-2" class="scene-canvas"></canvas>
           </div>
         </div>
         <div class="panel phase-preview">
-          <div class="phase-preview-bg">
-            <canvas
-              id="prev-canvas-3"
-              style="width: 100%; height: 100%"
-            ></canvas>
-          </div>
+          <div class="phase-preview-bg"><canvas id="prev-canvas-3" style="width:100%;height:100%"></canvas></div>
           <div class="phase-preview-content">
-            <div class="phase-tag">
-              ⏱ 03:40 &nbsp;|&nbsp;
-              <span style="color: var(--gold)">FASE 3 – PREMIAÇÃO</span>
-            </div>
+            <div class="phase-tag">⏱ 03:40 &nbsp;|&nbsp;<span style="color:var(--gold)">FASE 3 – PREMIAÇÃO</span></div>
             <canvas id="scene-prev-3" class="scene-canvas"></canvas>
           </div>
         </div>
       </div>
     </div>
-    <!-- /s-intro -->
 
-    <!-- ════════════════════════════════════════
-     SCREEN 2 – GAME
-════════════════════════════════════════ -->
+    <!-- SCREEN 2 – GAME -->
     <div class="screen" id="s-game">
       <div class="game-layout">
-        <!-- HUD -->
         <div class="game-hud">
-          <div class="hud-phase-name" id="g-phase-name">
-            Fase 1 – Escola de Tecnologia
-          </div>
-          <div class="hud-pill">
-            ⭐ <span id="g-score" class="hud-score-val">0</span>
-          </div>
-          <div class="hud-pill">
-            ⏱ <span id="g-timer" class="hud-timer">--</span>
-          </div>
+          <div class="hud-phase-name" id="g-phase-name">Fase 1 – Escola de Tecnologia</div>
+          <div class="hud-pill">⭐ <span id="g-score" class="hud-score-val">0</span></div>
+          <div class="hud-pill">⏱ <span id="g-timer" class="hud-timer">--</span></div>
           <div class="hud-pill" id="g-hearts"></div>
           <div class="hud-q-progress" id="g-q-prog"></div>
           <div class="hud-name-pill" id="g-name-pill">Jogador</div>
         </div>
 
-        <!-- MAIN -->
         <div class="game-main">
           <!-- SCENE -->
           <div class="panel scene-panel" id="scene-panel">
             <canvas id="mainCanvas"></canvas>
-            <div class="scene-timer-badge">
-              ⏱ <span id="scene-timer">04:58</span>
-            </div>
-            <div class="scene-pts-badge">
-              PONTOS <span id="scene-pts">0</span>
-            </div>
+            <div class="scene-timer-badge">⏱ <span id="scene-timer">04:58</span></div>
+            <div class="scene-pts-badge">PONTOS <span id="scene-pts">0</span></div>
             <div class="scene-interact-hint">
-              <span class="key-badge">E</span> para falar / interagir
-              &nbsp;·&nbsp; <span class="key-badge">← →</span> mover
-              &nbsp;·&nbsp; <span class="key-badge">↑/Espaço</span> pular
+              <span class="key-badge">E</span> falar &nbsp;·&nbsp;
+              <span class="key-badge">← →</span> mover &nbsp;·&nbsp;
+              <span class="key-badge">↑</span> pular
             </div>
-            <!-- Bubbles injected here -->
+            <div class="touch-controls" id="touch-controls" aria-hidden="true">
+              <div class="touch-dpad">
+                <button type="button" class="touch-btn touch-left" data-key="ArrowLeft" aria-label="Esquerda">◀</button>
+                <button type="button" class="touch-btn touch-right" data-key="ArrowRight" aria-label="Direita">▶</button>
+              </div>
+              <div class="touch-actions">
+                <button type="button" class="touch-btn touch-interact" data-key="e" aria-label="Interagir">E</button>
+                <button type="button" class="touch-btn touch-jump" data-key="ArrowUp" aria-label="Pular">▲</button>
+              </div>
+            </div>
           </div>
 
           <!-- Q PANEL -->
           <div class="panel q-panel" id="q-panel">
-            <!-- NPC says -->
             <div class="q-npc-say" id="q-npc-say">
               <div class="q-npc-avatar" id="q-npc-av">🦊</div>
               <div class="q-npc-bubble">
@@ -255,352 +162,133 @@
                 <div id="q-npc-msg">Para começar, me diga...</div>
               </div>
             </div>
-
             <div class="q-number-row">
               <div class="q-num" id="q-num">Pergunta 1 de 5</div>
-              <div
-                class="q-timer-small"
-                id="q-timer-num"
-                style="color: var(--green)"
-              >
-                ⏱ 40s
-              </div>
+              <div class="q-timer-small" id="q-timer-num" style="color:var(--green)">⏱ 40s</div>
             </div>
-
             <div class="q-text" id="q-text">O que é um software?</div>
-            <div class="q-hint-box">
-              <span>💡</span
-              ><span id="q-hint">Pense no que faz o computador funcionar.</span>
-            </div>
+            <div class="q-hint-box"><span>💡</span><span id="q-hint">Pense no que faz o computador funcionar.</span></div>
             <div class="q-answers" id="q-answers"></div>
             <div class="q-feedback" id="q-feedback">
               <div class="fb-t" id="fb-title"></div>
               <div id="fb-body"></div>
             </div>
-            <div class="q-timer-bar">
-              <div class="q-timer-fill" id="q-tfill"></div>
-            </div>
-            <button
-              class="btn btn-green btn-wide"
-              id="q-next"
-              style="display: none; margin-top: 4px"
-            >
-              Próxima →
+            <div class="q-timer-bar"><div class="q-timer-fill" id="q-tfill"></div></div>
+            <!-- BOTÃO PRÓXIMA: grande e sempre visível -->
+            <button class="btn btn-green btn-wide btn-next-quiz" id="q-next" style="display:none">
+              Próxima ▶
             </button>
           </div>
         </div>
-        <!-- /game-main -->
 
-        <!-- ACCESSORIES BAR -->
         <div class="panel acc-bar">
-          <span class="acc-title">Seus Acessórios</span>
+          <span class="acc-title">Acessórios</span>
           <div class="acc-items" id="acc-items"></div>
-          <div
-            style="margin-left: auto; font-size: 0.75rem; color: var(--dim)"
-            id="phase-tag-bar"
-          >
-            Fase 1/3
-          </div>
+          <div style="margin-left:auto;font-size:.75rem;color:var(--dim)" id="phase-tag-bar">Fase 1/3</div>
         </div>
       </div>
     </div>
-    <!-- /s-game -->
 
-    <!-- ════════════════════════════════════════
-     OVERLAYS
-════════════════════════════════════════ -->
-
-    <!-- Phase Intro Modal -->
+    <!-- OVERLAYS -->
     <div class="overlay" id="ov-phase">
       <div class="panel phase-modal panel-blue">
         <div class="badge badge-blue" id="ph-badge">Fase 1</div>
         <div class="ph-icon" id="ph-icon">🏫</div>
         <div class="ph-title" id="ph-title">Escola de Tecnologia</div>
-        <div class="ph-desc" id="ph-desc">
-          Explore o laboratório e fale com todos os personagens para desbloquear
-          as perguntas!
-        </div>
+        <div class="ph-desc" id="ph-desc">Explore o laboratório e fale com os personagens!</div>
         <div class="ph-npc-row" id="ph-npcs"></div>
         <div class="ph-controls">
           <strong>← →</strong> Mover &nbsp;|&nbsp;
           <strong>↑ / Espaço</strong> Pular &nbsp;|&nbsp;
-          <strong>E</strong> Falar/Interagir<br />
-          Fale com o <strong>RobôGuia 🤖</strong> primeiro para iniciar a
-          exploração.
+          <strong>E</strong> Interagir<br/>
+          Fale com o <strong>RobôGuia 🤖</strong> primeiro.
         </div>
-        <button class="btn btn-green btn-wide btn-lg" id="ph-start">
-          ▶ Explorar!
-        </button>
+        <button class="btn btn-green btn-wide btn-lg" id="ph-start">▶ Explorar!</button>
       </div>
     </div>
 
-    <!-- Reward Modal -->
     <div class="overlay" id="ov-reward">
       <div class="panel rw-modal panel-gold">
         <span id="rw-emoji-big">🎉</span>
         <div class="rw-title" id="rw-title">Fase Concluída!</div>
         <div class="rw-sub" id="rw-sub">Parabéns!</div>
         <div class="rw-stats">
-          <div class="rw-stat">
-            <div class="rw-stat-v" id="rw-pts">0</div>
-            <div class="rw-stat-l">Pontos</div>
-          </div>
-          <div class="rw-stat">
-            <div class="rw-stat-v" id="rw-acc">5/5</div>
-            <div class="rw-stat-l">Acertos</div>
-          </div>
-          <div class="rw-stat">
-            <div class="rw-stat-v" id="rw-tm">0s</div>
-            <div class="rw-stat-l">Tempo</div>
-          </div>
+          <div class="rw-stat"><div class="rw-stat-v" id="rw-pts">0</div><div class="rw-stat-l">Pontos</div></div>
+          <div class="rw-stat"><div class="rw-stat-v" id="rw-acc">5/5</div><div class="rw-stat-l">Acertos</div></div>
+          <div class="rw-stat"><div class="rw-stat-v" id="rw-tm">0s</div><div class="rw-stat-l">Tempo</div></div>
         </div>
-        <div id="rw-no-reward-msg" class="rw-no-reward" style="display: none">
-          ⚠️ Você errou 2 ou mais vezes — recompensa não liberada nesta fase.
-        </div>
+        <div id="rw-no-reward-msg" class="rw-no-reward" style="display:none">⚠️ Recompensa não liberada — 2+ erros.</div>
         <div class="rw-items-grid" id="rw-items"></div>
-        <button class="btn btn-green btn-wide btn-lg" id="rw-continue">
-          Continuar Aventura →
-        </button>
+        <button class="btn btn-green btn-wide btn-lg" id="rw-continue">Continuar Aventura →</button>
       </div>
     </div>
 
-    <!-- Victory Modal -->
     <div class="overlay" id="ov-victory">
       <div class="panel victory-modal panel-purple">
         <span class="v-trophy">👑</span>
         <div class="v-title">Missão Cumprida!</div>
-        <div
-          style="color: var(--dim); font-size: 0.9rem; margin-bottom: 6px"
-          id="v-player-name"
-        ></div>
-        <div class="v-sub">
-          Você protegeu o software, respeitou a autoria e se tornou um Guardião
-          do Código! 🛡️
-        </div>
+        <div style="color:var(--dim);font-size:.9rem;margin-bottom:6px" id="v-player-name"></div>
+        <div class="v-sub">Você protegeu o software e se tornou um Guardião do Código! 🛡️</div>
         <div class="v-stats">
-          <div class="rw-stat">
-            <div class="rw-stat-v" id="v-pts">0</div>
-            <div class="rw-stat-l">Total</div>
-          </div>
-          <div class="rw-stat">
-            <div class="rw-stat-v" id="v-time">0</div>
-            <div class="rw-stat-l">Tempo</div>
-          </div>
-          <div class="rw-stat">
-            <div class="rw-stat-v" id="v-rank">-</div>
-            <div class="rw-stat-l">Ranking</div>
-          </div>
+          <div class="rw-stat"><div class="rw-stat-v" id="v-pts">0</div><div class="rw-stat-l">Total</div></div>
+          <div class="rw-stat"><div class="rw-stat-v" id="v-time">0</div><div class="rw-stat-l">Tempo</div></div>
+          <div class="rw-stat"><div class="rw-stat-v" id="v-rank">-</div><div class="rw-stat-l">Ranking</div></div>
         </div>
         <div class="v-rewards" id="v-rewards"></div>
-        <div class="v-note">
-          🎓 <strong>Lembre-se:</strong> Todo software tem um autor. Respeitar a
-          licença, não fazer cópias ilegais e usar softwares com autorização são
-          atitudes de um verdadeiro Guardião do Código!
-        </div>
+        <div class="v-note">🎓 <strong>Lembre-se:</strong> Todo software tem um autor. Use com responsabilidade!</div>
         <div class="v-btns">
-          <button class="btn btn-green" id="v-play-again">
-            🔄 Jogar Novamente
-          </button>
+          <button class="btn btn-green" id="v-play-again">🔄 Jogar Novamente</button>
           <button class="btn btn-gold" id="v-ranking">🏆 Ver Ranking</button>
         </div>
       </div>
     </div>
 
-    <!-- Fail Message -->
     <div id="fail-overlay">
       <div id="fail-box">
         <h2>💔 Muitos Erros!</h2>
-        <p>
-          Você errou 2 ou mais vezes.<br />Voltando à 1ª pergunta da fase…<br /><em
-            style="color: var(--dim)"
-            >Recompensa bloqueada nesta tentativa.</em
-          >
-        </p>
+        <p>Você errou 2 ou mais vezes.<br/>Voltando à 1ª pergunta…<br/><em style="color:var(--dim)">Recompensa bloqueada.</em></p>
       </div>
     </div>
 
-    <!-- How to Play overlay -->
     <div class="overlay" id="ov-howto">
-      <div class="panel" style="max-width: 500px; width: 100%; padding: 28px">
-        <div
-          style="
-            font-family: var(--font);
-            font-size: 1.5rem;
-            color: var(--bl);
-            margin-bottom: 16px;
-            text-align: center;
-          "
-        >
-          ❓ Como Jogar
+      <div class="panel" style="max-width:500px;width:100%;padding:28px">
+        <div style="font-family:var(--font);font-size:1.5rem;color:var(--bl);margin-bottom:16px;text-align:center">❓ Como Jogar</div>
+        <div style="font-size:.88rem;line-height:1.9;display:flex;flex-direction:column;gap:10px">
+          <div style="background:rgba(46,204,113,.08);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:9px 12px"><strong style="color:var(--green)">🎯 Objetivo:</strong> Explore, fale com NPCs e responda 5 perguntas sobre software.</div>
+          <div style="background:rgba(66,165,245,.08);border-left:3px solid var(--bl);border-radius:0 8px 8px 0;padding:9px 12px"><strong style="color:var(--bl)">🕹️ Controles:</strong> ← → mover · ↑/Espaço pular · E interagir</div>
+          <div style="background:rgba(255,214,0,.08);border-left:3px solid var(--yellow);border-radius:0 8px 8px 0;padding:9px 12px"><strong style="color:var(--yellow)">⭐ Pontos:</strong> 100 pts por acerto + bônus de velocidade.</div>
+          <div style="background:rgba(229,57,53,.08);border-left:3px solid var(--red);border-radius:0 8px 8px 0;padding:9px 12px"><strong style="color:#ff8a80">💔 Erros:</strong> Errar 2x reinicia a fase e bloqueia recompensa.</div>
+          <div style="background:rgba(255,77,157,.08);border-left:3px solid var(--pink);border-radius:0 8px 8px 0;padding:9px 12px"><strong style="color:var(--pink)">🎁 Recompensas:</strong> Erre no máximo 1 vez para ganhar o acessório.</div>
         </div>
-        <div
-          style="
-            font-size: 0.88rem;
-            line-height: 1.9;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-          "
-        >
-          <div
-            style="
-              background: rgba(46, 204, 113, 0.08);
-              border-left: 3px solid var(--green);
-              border-radius: 0 8px 8px 0;
-              padding: 9px 12px;
-            "
-          >
-            <strong style="color: var(--green)">🎯 Objetivo:</strong> Explore
-            cada fase, fale com os NPCs e responda 5 perguntas sobre software e
-            propriedade intelectual.
-          </div>
-          <div
-            style="
-              background: rgba(66, 165, 245, 0.08);
-              border-left: 3px solid var(--bl);
-              border-radius: 0 8px 8px 0;
-              padding: 9px 12px;
-            "
-          >
-            <strong style="color: var(--bl)">🕹️ Controles:</strong> ← → mover ·
-            ↑/Espaço pular · E interagir com NPCs
-          </div>
-          <div
-            style="
-              background: rgba(255, 214, 0, 0.08);
-              border-left: 3px solid var(--yellow);
-              border-radius: 0 8px 8px 0;
-              padding: 9px 12px;
-            "
-          >
-            <strong style="color: var(--yellow)">⭐ Pontos:</strong> 100 pts por
-            acerto + bônus de tempo. Responda rápido!
-          </div>
-          <div
-            style="
-              background: rgba(229, 57, 53, 0.08);
-              border-left: 3px solid var(--red);
-              border-radius: 0 8px 8px 0;
-              padding: 9px 12px;
-            "
-          >
-            <strong style="color: #ff8a80">💔 Erros:</strong> Errar 2x reinicia
-            as perguntas da fase e bloqueia a recompensa nessa tentativa!
-          </div>
-          <div
-            style="
-              background: rgba(255, 77, 157, 0.08);
-              border-left: 3px solid var(--pink);
-              border-radius: 0 8px 8px 0;
-              padding: 9px 12px;
-            "
-          >
-            <strong style="color: var(--pink)">🎁 Recompensas:</strong> Erre no
-            máximo 1 vez para ganhar o acessório da fase.
-          </div>
-        </div>
-        <button
-          class="btn btn-green btn-wide"
-          style="margin-top: 16px"
-          id="ov-howto-close"
-        >
-          ← Fechar
-        </button>
+        <button class="btn btn-green btn-wide" style="margin-top:16px" id="ov-howto-close">← Fechar</button>
       </div>
     </div>
 
-    <!-- Credits overlay -->
     <div class="overlay" id="ov-credits">
-      <div
-        class="panel"
-        style="max-width: 420px; width: 100%; padding: 28px; text-align: center"
-      >
-        <div style="font-size: 3rem; margin-bottom: 6px">🦫</div>
-        <div
-          style="
-            font-family: var(--font);
-            font-size: 1.7rem;
-            margin-bottom: 4px;
-            color: var(--bl);
-          "
-        >
-          CapyCode
+      <div class="panel" style="max-width:420px;width:100%;padding:28px;text-align:center">
+        <div style="font-size:3rem;margin-bottom:6px">🦫</div>
+        <div style="font-family:var(--font);font-size:1.7rem;margin-bottom:4px;color:var(--bl)">CapyCode</div>
+        <div style="font-size:.72rem;color:var(--dim);letter-spacing:2px;margin-bottom:16px">A CAPIVARA HACKER DO BEM</div>
+        <div style="font-size:.85rem;color:var(--dim);line-height:1.9;text-align:left">
+          🎓 <strong style="color:var(--text)">Objetivo:</strong> Educação em Propriedade Intelectual<br/>
+          📚 <strong style="color:var(--text)">Público:</strong> Ensino Médio Técnico<br/>
+          ⚖️ <strong style="color:var(--text)">Lei:</strong> 9.610/98 – Direitos Autorais<br/>
+          💻 <strong style="color:var(--text)">Tecnologia:</strong> HTML5 Canvas + CSS3 + JS puro
+          <hr style="border-color:var(--bord);margin:12px 0"/>
+          <em style="font-size:.75rem;color:rgba(150,200,255,.5)">Jogo educacional sem dependências externas.</em>
         </div>
-        <div
-          style="
-            font-size: 0.72rem;
-            color: var(--dim);
-            letter-spacing: 2px;
-            margin-bottom: 16px;
-          "
-        >
-          A CAPIVARA HACKER DO BEM
-        </div>
-        <div
-          style="
-            font-size: 0.85rem;
-            color: var(--dim);
-            line-height: 1.9;
-            text-align: left;
-          "
-        >
-          🎓 <strong style="color: var(--text)">Objetivo:</strong> Educação em
-          Propriedade Intelectual<br />
-          📚 <strong style="color: var(--text)">Público:</strong> Ensino Médio
-          Técnico<br />
-          ⚖️ <strong style="color: var(--text)">Lei:</strong> 9.610/98 –
-          Direitos Autorais<br />
-          💻 <strong style="color: var(--text)">Tecnologia:</strong> HTML5
-          Canvas + CSS3 + JS puro
-          <hr style="border-color: var(--bord); margin: 12px 0" />
-          <em style="font-size: 0.75rem; color: rgba(150, 200, 255, 0.5)"
-            >Todo o visual é gerado via Canvas 2D. Jogo educacional sem
-            dependências externas.</em
-          >
-        </div>
-        <button
-          class="btn btn-blue btn-wide"
-          style="margin-top: 16px"
-          id="ov-credits-close"
-        >
-          ← Fechar
-        </button>
+        <button class="btn btn-blue btn-wide" style="margin-top:16px" id="ov-credits-close">← Fechar</button>
       </div>
     </div>
 
-    <!-- Ranking overlay -->
     <div class="overlay" id="ov-ranking">
-      <div class="panel" style="max-width: 500px; width: 100%; padding: 28px">
-        <div
-          style="
-            font-family: var(--font);
-            font-size: 1.5rem;
-            color: var(--gold);
-            margin-bottom: 16px;
-            text-align: center;
-          "
-        >
-          🏆 Ranking Completo
-        </div>
-        <div
-          id="rank-list-full"
-          style="
-            max-height: 400px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-          "
-        ></div>
-        <button
-          class="btn btn-blue btn-wide"
-          style="margin-top: 14px"
-          id="ov-rank-close"
-        >
-          ← Fechar
-        </button>
+      <div class="panel" style="max-width:500px;width:100%;padding:28px">
+        <div style="font-family:var(--font);font-size:1.5rem;color:var(--gold);margin-bottom:16px;text-align:center">🏆 Ranking Completo</div>
+        <div id="rank-list-full" style="max-height:400px;overflow-y:auto;display:flex;flex-direction:column;gap:6px"></div>
+        <button class="btn btn-blue btn-wide" style="margin-top:14px" id="ov-rank-close">← Fechar</button>
       </div>
     </div>
-    <script src="script.js"></script>
+
+    <script src="script.js" defer></script>
   </body>
 </html>
